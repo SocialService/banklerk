@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HoweWork_2</title>
+</head>
+<body>
+	<style>
+	body {
+		background-color: whitesmoke;
+	}
+	input[type="text"] {
+		width: 40px;
+	}
+	.button	{
+		margin-top: 30px;
+		height: 50px;
+		width: 150px;
+		background-color: #888;
+		text-align: center;
+		line-height: 50px;
+		cursor: pointer;
+	}
+</style>
+<p>1. Перераспределить значения переменных X и Y так, чтобы в X оказалось меньшее из этих значений, а в Y — большее.</p>
+<div class="button" id="work1">Запустить код</div>
+<p>2. Есть три вершины. Координаты X, Y, Z заданы как целые числа.  Нужно определить - является ли треугольник с заданными координатами прямоугольным.</p>
+<label for="x1">x1:</label> 
+<input type=text id="x1" value="">
+<label for="y1">y1:</label> 
+<input type=text id="y1" value="">
+<label for="z1">z1:</label> 
+<input type=text id="z1" value="">
+<br/><br/>
+<label for="x2">x2:</label> 
+<input type=text id="x2" value="">
+<label for="y2">y2:</label> 
+<input type=text id="y2" value="">
+<label for="z2">z2:</label> 
+<input type=text id="z2" value="">
+<br/><br/>
+<label for="x3">x3:</label> 
+<input type=text id="x3" value="">
+<label for="y3">y3:</label> 
+<input type=text id="y3" value="">
+<label for="z3">z3:</label> 
+<input type=text id="z3" value="">
+<br/><br/>
+<input type="button" value="Рассчитать" onclick="calc();">
+<br/><br/>
+<span></span>
+<p>3. Дан номер месяца (1 — январь, 2 — февраль, ...). Вывести название соответствующего времени года ("зима", "весна" и т.д.).</p>
+<div class="button" id="work3">Запустить код</div>
+<p>4. Единицы длины пронумерованы следующим образом: 1 — дециметр, 2 — километр, 3 — метр, 4 — миллиметр, 5 — сантиметр. 
+Дан номер единицы длины и длина отрезка L в этих единицах (вещественное число). Вывести длину данного отрезка в метрах.</p>
+<div class="button" id="work4">Запустить код</div>
+<p>5. Вывести используя (document.write) таблицу умножения чисел до 10.</p>
+<div class="button" id="work5">Запустить код</div>
+
+<!-- HoweWork_2 -->
+<script type="text/javascript">
+	document.getElementById('work1').onclick = function work1() { 
+		var  num1, num2, x, y;
+		num1 = prompt("Введите значение первого числа:");
+		num2 = prompt("Введите значение второго числа:");
+		x = Math.min(num1, num2);
+		y = Math.max(num1, num2);
+		alert("Значение перменных согласно условиям задачи: \n X - " + x + "\n Y - " + y);
+	}
+	function calc() {
+		var t = {};
+		for (var i = 1; i <= 3; i++) {
+			t[i] = {};
+			t[i].x = parseFloat(document.getElementById('x'+i).value);
+			t[i].y = parseFloat(document.getElementById('y'+i).value);
+			t[i].z = parseFloat(document.getElementById('z'+i).value);
+		}
+		for (i in t) {
+			var j = parseInt(i)+1;
+			if (j > 3) j = 1;
+			t['l'+i] = Math.sqrt(Math.pow(t[j].x - t[i].x, 2) + Math.pow(t[j].y - t[i].y, 2) + Math.pow(t[j].z - t[i].z, 2));  
+		}
+		var a =	+((Math.acos((Math.pow(t.l3, 2) - Math.pow(t.l1, 2) + Math.pow(t.l2, 2)) / (2 * t.l3 * t.l2))) * 180 / Math.PI).toFixed(2);
+		var b =	+((Math.acos((Math.pow(t.l1, 2) - Math.pow(t.l3, 2) + Math.pow(t.l2, 2)) / (2 * t.l1 * t.l2))) * 180 / Math.PI).toFixed(2);
+		var g = +((Math.acos((Math.pow(t.l1, 2) - Math.pow(t.l2, 2) + Math.pow(t.l3, 2)) / (2 * t.l1 * t.l3))) * 180 / Math.PI).toFixed(2);
+		var span = document.getElementsByTagName('span')[0];
+		a == 90.00 || b == 90.00 || g == 90.00 && a + b + g == 180.00 ? span.innerHTML = "Треугольник прямоугольный" : span.innerHTML = "Треугольник не прямоугольный";		
+	}
+	document.getElementById('work3').onclick = function work3() {
+		var month;
+		month = +prompt("Введите номер месяца(от 1 до 12):");
+
+		switch (month) {
+			case 12:
+			case 1:
+			case 2:
+			alert("Сезон - зима.");
+			break;
+			case 3:
+			case 4:
+			case 5:
+			alert("Сезон - весна.");
+			break;
+			case 6:
+			case 7:
+			case 8:
+			alert("Сезон - лето.");
+			break;
+			case 9:
+			case 10:
+			case 11:
+			alert("Сезон - осень.");
+			break;
+			default:
+			alert("Значение введено неверно!");
+		}
+	}
+	document.getElementById('work4').onclick = function work4() {
+		var length, meter;
+		length = +prompt("Введите длинну отрезка:");
+		meter = +prompt("Введите единицы измерения отрезка(1 — дециметр, 2 — километр, \n" + "3 — метр, 4 — миллиметр, 5 — сантиметр):");
+
+		switch (meter) {
+			case 1:
+			length = length/10;
+			alert(length);
+			break;
+			case 2:
+			length = length*1000;
+			alert(length);
+			break;
+			case 3:
+			alert(length);
+			break;
+			case 4:
+			length = length/1000;
+			alert(length);
+			break;
+			case 5:
+			length = length/100;
+			alert(length);
+			break;
+			default:
+			alert("Неверно выбранны единицы измерения!")
+		}
+	}
+	document.getElementById('work5').onclick = function work5() {
+		var str = "<table>";
+		for (i=1 ; i<11 ; i++) {
+			str+="<tr>";
+			for (j=1 ; j<11 ; j++) {
+				str+="<td>";
+				str+=i*j;
+				str+="</td>";
+			}
+			str+="</tr>";
+			
+		}
+		str +="</table>";
+		document.write(str);
+	}
+</script>
+</body>
+</html>
