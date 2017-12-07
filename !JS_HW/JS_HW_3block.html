@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HoweWork_3</title>
+</head>
+<body>
+	<style>
+	body {
+		background-color: whitesmoke;
+	}
+	.button	{
+		margin-top: 30px;
+		height: 50px;
+		width: 150px;
+		background-color: #888;
+		text-align: center;
+		line-height: 50px;
+		cursor: pointer;
+	}
+</style>
+<p>1. Дана строка, изображающая целое число. <br/><br/>
+Написать программу, которая будет выводить сумму всех цифр в числе.</p>
+<div class="button" id="work1">Запустить код</div>
+<p>2. Дана строка S и символ C.<br/><br/>
+Удвоить каждое вхождение символа C в строку S.</p>
+<div class="button" id="work2">Запустить код</div>
+<p>3. Проверить что введенный пароль удовлетворяет следующим условиям сложности: <br/>
+	- длинна от 9 символов;<br/>
+	- содержит обязательно английские буквы верхнего и нижнего регистра;<br/>
+	- содержит более двух цифр;<br/>
+	- содержит обязательно один из неалфавитных символов (например, !, $, #, %).<br/>
+</p>
+<div class="button" id="work3">Запустить код</div>
+
+<!-- HoweWork_3 -->
+<script type="text/javascript">
+	document.getElementById('work1').onclick = function work1() {
+		var number = prompt('Введите число, для вычисления суммы цифр'),
+		i = 0,
+		sum = 0;
+		while (number[i] !== undefined) {
+			sum += +number[i];
+			i++;
+		}
+		alert('Сумма равна: ' + sum);
+	};
+	document.getElementById('work2').onclick = function work2() {
+		var string = prompt('Введите строку'),
+		symbol = prompt('Символ, который хотите удвоить'),
+		i = 0,
+		resString = '';
+		while (string[i] !== undefined) {
+			resString += string[i] !== symbol ? string[i] : (string[i] + string[i]);
+			i++;
+		}
+		alert('Итоговая строка: ' + resString);
+	};
+	document.getElementById('work3').onclick = function work3() {
+	var str = prompt('Введите пароль: '),
+	reg1 = /.{9,}/,
+	reg2 = /[a-z]+/g,
+	reg3 = /[A-Z]+/g,
+	reg4 = /(.*\d){2,}/g,
+	reg5 = /[\!\$\#\%]+/g;
+	if (reg1.test(str)) {
+		if (reg2.test(str) && reg3.test(str)) {
+			if (reg4.test(str)) {
+				if (reg5.test(str)) {
+					alert('У вас надежный пароль: ' + str);
+				} else {
+					alert('Ваш пароль должен содержать спецсимволы: !, $, #, %');
+				}
+			} else {
+				alert('Ваш пароль должен включать в себя более двух цифр');
+			}
+		} else {
+			alert('Ваш пароль должен содержать строчные и прописные английские буквы');
+		}
+	} else {
+		alert('Пароль должен содержать от 9 симвомолов');
+	}
+}
+</script>
+</body>
+</html>
