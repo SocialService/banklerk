@@ -1,4 +1,5 @@
 // var dt = '09.12.2017';
+// дату нужно генерировать динамически через new Date()
 var dt = '26.12.2017';
 
 var request = $.ajax({
@@ -9,6 +10,8 @@ var request = $.ajax({
 	},
 	dataType: "json"
 });
+
+// индексируемся в массив по ключу
 request.done(function (msg) {
 	$('#day-calendar').html("<h1>" + msg[0] + "</h1>" + "<h2>" + msg[1] + "</h2>" + "<img src=" + msg[3] + ">" + "<p>" + msg[2] + "</p>");
 });
